@@ -7,6 +7,10 @@ class AmonController < ApplicationController
 
   def welcome
     `cloudmonkey set display json`
+    `cloudmonkey set apikey #{ADMIN_APIKEY}`
+    `cloudmonkey set secretkey #{ADMIN_SECRETKEY}`
+    `cloudmonkey set host #{CLOUDSTACK_HOST}`
+    `cloudmonkey set host #{CLOUDSTACK_PORT}`
   end
 
   def register
