@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>CloudStack User Account Registration</title>
+  </head>
+  <body>
+
+
+    <div style="height: 150px;"></div>
+
+
+    <div align=center style="vertical-align: middle;" class="main">
+      <table>
+	<tr>
+	  <td>
+
+	    <span class=logo>
+	      CloudStack<br>
+	      User Account<br>
+	      Registration<br>
+	    </span>
+
+	  </td>
+
+	  <td width=100px>
+	  </td>
+
+	  <td>
+
+	    <form action="/register" method="post">
+
+	      <table>
+		<tr height=20px />
+		<tr>
+		  <td class="label">First Name</td>
+		  <td><input type="text" name="firstname"></td>
+		</tr>
+		<tr>
+		  <td class="label">Last Name</td>
+		  <td><input type="text" name="lastname"></td>
+		</tr>
+		<tr>
+		  <td class="label">Username</td>
+		  <td><input type="text" name="accountname"></td>
+		</tr>
+		<tr>
+		  <td class="label">Email Address</td>
+		  <td><input type="email" name="email"></td>
+		</tr>
+		<tr>
+		  <td class="label">Password</td>
+		  <td><input type="password" name="password"></td>
+		</tr>
+		<tr>
+		  <td class="label">Confirm</td>
+		  <td><input type="password" name="confirm"></td>
+		</tr>
+	      </table>
+	      
+	      <div align=right>
+		<%==
+		   if params[:error].to_i > 0
+  		   "<span style=\"font-weight: bold; color: #ff0000;\">ERROR</span>"
+		   end
+		   %>
+		<input type="submit" value="Register">
+	      </div>
+	    </form>
+	    <tr height=20px />
+	  </td>
+	</tr>
+      </table>
+    </div>
+
+
+    <span style="text-align: right;">
+      <h3>>> Login to <a href="http://<%= CLOUDSTACK_HOST %>:<%= CLOUDSTACK_PORT %>/client">CloudStack</a>.</h3>
+    </span>
+
+  </body>
+</html>
