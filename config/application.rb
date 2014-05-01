@@ -19,5 +19,6 @@ module CloudstackRegisterAccount
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.secret_key_base ='d37546e40284ccff6f552dc6b5af935ae3c3fea0f113ed5506c4fb36c7e73534d5b6c5ace3061e43edf87d5d50c570516e9a01cc69cff49670fddcae926e928b'
   end
 end
