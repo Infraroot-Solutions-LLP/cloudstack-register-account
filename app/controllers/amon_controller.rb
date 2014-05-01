@@ -6,11 +6,6 @@ class AmonController < ApplicationController
   skip_before_filter :verify_authenticity_token ,:only=>[:register, :unregister]
 
   def welcome
-    `cloudmonkey set display json`
-    `cloudmonkey set apikey #{ADMIN_APIKEY}`
-    `cloudmonkey set secretkey #{ADMIN_SECRETKEY}`
-    `cloudmonkey set host #{CLOUDSTACK_HOST}`
-    `cloudmonkey set port #{CLOUDSTACK_PORT}`
   end
 
   def register
