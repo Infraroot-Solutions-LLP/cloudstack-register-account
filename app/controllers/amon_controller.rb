@@ -3,14 +3,14 @@ require 'json'
 
 class AmonController < ApplicationController
 
-  skip_before_filter :verify_authenticity_token ,:only=>[:register]
+  skip_before_filter :verify_authenticity_token ,:only=>[:register, :unregister]
 
   def welcome
     `cloudmonkey set display json`
     `cloudmonkey set apikey #{ADMIN_APIKEY}`
     `cloudmonkey set secretkey #{ADMIN_SECRETKEY}`
     `cloudmonkey set host #{CLOUDSTACK_HOST}`
-    `cloudmonkey set host #{CLOUDSTACK_PORT}`
+    `cloudmonkey set port #{CLOUDSTACK_PORT}`
   end
 
   def register
@@ -20,22 +20,35 @@ class AmonController < ApplicationController
 
       begin
         # create user account
-        result = JSON.parse(`cloudmonkey create account firstname="#{params[:firstname]}" lastname="#{params[:lastname]}" username="#{params[:accountname]}" accounttype=0 email="#{params[:email]}" password="#{params[:password]}"`)
+        result = JSON.parse(`cloudmonkey create account firstname="#{params[:firstname]}" lastname="#{params[:lastname]}" username="#{params[:username]}" accounttype=0 email="#{params[:email]}" password="#{params[:password]}"`)
 
-        redirect_to("http://#{CLOUDSTACK_HOST}:#{CLOUDSTACK_PORT}/client")
+        redirect_to("/?registered=true")
       rescue
-        redirect_to("/?error=1")
+        redirect_to("/?registered=false")
       end
 
     else
-      redirect_to("/?error=1")
+      redirect_to("/?registered=false")
     end
     
   end
 
 
   def unregister
-    
+      begin
+        # delete user account
+        result = JSON.parse `cloudmonkey api login username=#{params[:username]} password=#{params[:password]}`
+        if result["sessionkey"]
+          result = JSON.parse `cloudmonkey list users username=#{params[:username]}`
+          accountid = result["user"].first["accountid"]
+          result = JSON.parse `cloudmonkey delete account id=#{accountid}`.sub(/.*?{/,"{")
+          redirect_to("/?unregistered=true")
+        else
+          redirect_to("/?unregistered=false")
+        end
+      rescue
+        redirect_to("/?unregistered=false")
+      end 
   end
 
  

@@ -4,71 +4,132 @@
   </head>
   <body>
 
-
     <div style="height: 150px;"></div>
 
 
     <div align=center style="vertical-align: middle;" class="main">
+
+
       <table>
 	<tr>
-	  <td>
 
+	  <td>
 	    <span class=logo>
 	      CloudStack<br>
 	      User Account<br>
 	      Registration<br>
 	    </span>
-
 	  </td>
 
-	  <td width=100px>
+	  <td width=50>
 	  </td>
 
 	  <td>
-
 	    <form action="/register" method="post">
-
 	      <table>
-		<tr height=20px />
 		<tr>
-		  <td class="label">First Name</td>
-		  <td><input type="text" name="firstname"></td>
+		  <td>
+		    <span style="font-size: 18px; font-weight: bold;">Create Account:</span>
+		  </td>
 		</tr>
 		<tr>
-		  <td class="label">Last Name</td>
-		  <td><input type="text" name="lastname"></td>
+		  <td>
+		    <table>
+		      <tr>
+			<td class="label">First Name</td>
+			<td><input type="text" name="firstname"></td>
+		      </tr>
+		      <tr>
+			<td class="label">Last Name</td>
+			<td><input type="text" name="lastname"></td>
+		      </tr>
+		      <tr>
+			<td class="label">Username</td>
+			<td><input type="text" name="username"></td>
+		      </tr>
+		      <tr>
+			<td class="label">Email Address</td>
+			<td><input type="email" name="email"></td>
+		      </tr>
+		      <tr>
+			<td class="label">Password</td>
+			<td><input type="password" name="password"></td>
+		      </tr>
+		      <tr>
+			<td class="label">Confirm</td>
+			<td><input type="password" name="confirm"></td>
+		      </tr>
+		    </table>
+		  </td>
 		</tr>
 		<tr>
-		  <td class="label">Username</td>
-		  <td><input type="text" name="accountname"></td>
-		</tr>
-		<tr>
-		  <td class="label">Email Address</td>
-		  <td><input type="email" name="email"></td>
-		</tr>
-		<tr>
-		  <td class="label">Password</td>
-		  <td><input type="password" name="password"></td>
-		</tr>
-		<tr>
-		  <td class="label">Confirm</td>
-		  <td><input type="password" name="confirm"></td>
+		  <td>
+		    <div align=right>
+		      <%==
+			 if params[:registered] == "false"
+  		      "<span style=\"font-weight: bold; color: #ff0000;\">ERROR</span>"
+			 elsif params[:registered] == "true"
+  		      "<span style=\"font-weight: bold;\">SUCCESS</span>"
+		      end
+		      %>
+		      <input type="submit" value="Create Account">
+		    </div>
+		  </td>
 		</tr>
 	      </table>
-	      
-	      <div align=right>
-		<%==
-		   if params[:error].to_i > 0
-  		   "<span style=\"font-weight: bold; color: #ff0000;\">ERROR</span>"
-		   end
-		   %>
-		<input type="submit" value="Register">
-	      </div>
 	    </form>
-	    <tr height=20px />
 	  </td>
+
+	  <td>
+	    <hr width="1" size="280">
+	  </td>
+
+	  <td>
+	    <form action="/unregister" method="post">
+	      <table>
+		<tr>
+		  <td>
+		    <span style="font-size: 18px; font-weight: bold;">Delete Account:</span>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <table>
+		      <tr>
+			<td class="label">Username</td>
+			<td><input type="text" name="username"></td>
+		      </tr>
+		      <tr>
+			<td class="label">Password</td>
+			<td><input type="password" name="password"></td>
+		      </tr>
+		    </table>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <div align=right>
+		      <%==
+			 if params[:unregistered] == "false"
+  		      "<span style=\"font-weight: bold; color: #ff0000;\">ERROR</span>"
+			 elsif params[:unregistered] == "true"
+  		      "<span style=\"font-weight: bold;\">SUCCESS</span>"
+		      end
+		      %>
+		      <input type="submit" value="Delete Account">
+		    </div>
+		  </td>
+		</tr>
+	      </table>
+	    </form>
+	  </td>
+
+
 	</tr>
       </table>
+
+
+
     </div>
 
 

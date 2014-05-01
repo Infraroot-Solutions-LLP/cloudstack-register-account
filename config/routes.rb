@@ -8,6 +8,7 @@ CloudstackRegisterAccount::Application.routes.draw do
   root 'amon#welcome'
 
   post 'register' => 'amon#register'
+  post 'unregister' => 'amon#unregister'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
